@@ -37,6 +37,7 @@ function setup() {
   bananaGroup= new Group();
   obstacleGroup= new Group();
   
+  monkey.setCollider("circle",0,0,monkey.radius);
 }
 
 
@@ -44,7 +45,7 @@ function draw() {
 background('white');
   monkey.collide(ground);
   
-  monkey.debug= true;
+  //monkey.debug= true;
   
   if (gameState===PLAY){
   stroke("white");
