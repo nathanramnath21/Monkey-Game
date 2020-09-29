@@ -7,6 +7,7 @@ var banana ,bananaImage, obstacle, obstacleImage, bananaGroup;
 var FoodGroup, obstacleGroup, ground;
 var score=0;
 var survivalTime=0;
+var bananas =0;
 
 function preload(){
   
@@ -43,17 +44,24 @@ function draw() {
 background('white');
   monkey.collide(ground);
   
+  monkey.debug= true;
+  
   if (gameState===PLAY){
   stroke("white");
   textSize(20);
   fill("white");
-  text("Score: "+ score, 500, 50);
+  text("Score: "+ score, 300, 50);
   
   stroke("black");
   textSize(20);
   fill("black");
   survivalTime=Math.ceil(frameCount/frameRate())
   text("SurvivalTime: "+ survivalTime, 100, 50);
+    
+  stroke("black");
+  textSize(20);
+  fill("black");
+  text("Bananas Eaten: "+ bananas, 100, 75);
     
     createBanana();
   createObstacles();
@@ -62,9 +70,13 @@ background('white');
       ground.x = ground.width/2;
     }
   
-  
+    if (bananaGroup.isTouching(monkey)) {
+    
+  bananas=bananas+1;
+        
+  }
   if(keyDown("space")&& monkey.y >= 100) {
-        monkey.velocityY = -20;
+        monkey.velocityY = -10;
     }
   monkey.velocityY = monkey.velocityY + 0.8
     
